@@ -1,0 +1,9 @@
+drop_index("room_restrictions","room_restrictions_reservation_id_idx")
+drop_index("room_restrictions","room_restrictions_room_id_idx")
+drop_index("room_restrictions","room_restrictions_start_date_end_date_idx")
+
+drop_foreign_key("reservations", "reservations_rooms_id_fk")
+drop_foreign_key("reservations", "reservations_email_idx")
+drop_foreign_key("reservations", "reservations_last_name_idx")
+
+drop_foreign_key("room_restrictions", "room_restrictions_reservation_id_fk")

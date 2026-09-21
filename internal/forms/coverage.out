@@ -1,0 +1,18 @@
+mode: set
+bitbucket.org/JerichoBaisa/bookings-go-v2/internal/forms/errors.go:6.44,8.2 1 1
+bitbucket.org/JerichoBaisa/bookings-go-v2/internal/forms/errors.go:11.42,13.18 2 1
+bitbucket.org/JerichoBaisa/bookings-go-v2/internal/forms/errors.go:13.18,15.3 1 1
+bitbucket.org/JerichoBaisa/bookings-go-v2/internal/forms/errors.go:17.2,17.14 1 1
+bitbucket.org/JerichoBaisa/bookings-go-v2/internal/forms/forms.go:18.33,23.2 1 1
+bitbucket.org/JerichoBaisa/bookings-go-v2/internal/forms/forms.go:26.43,27.31 1 1
+bitbucket.org/JerichoBaisa/bookings-go-v2/internal/forms/forms.go:27.31,29.37 2 1
+bitbucket.org/JerichoBaisa/bookings-go-v2/internal/forms/forms.go:29.37,31.4 1 1
+bitbucket.org/JerichoBaisa/bookings-go-v2/internal/forms/forms.go:36.39,38.13 2 1
+bitbucket.org/JerichoBaisa/bookings-go-v2/internal/forms/forms.go:38.13,41.3 2 1
+bitbucket.org/JerichoBaisa/bookings-go-v2/internal/forms/forms.go:43.2,43.13 1 1
+bitbucket.org/JerichoBaisa/bookings-go-v2/internal/forms/forms.go:47.29,49.2 1 1
+bitbucket.org/JerichoBaisa/bookings-go-v2/internal/forms/forms.go:52.57,54.21 2 1
+bitbucket.org/JerichoBaisa/bookings-go-v2/internal/forms/forms.go:54.21,57.3 2 1
+bitbucket.org/JerichoBaisa/bookings-go-v2/internal/forms/forms.go:59.2,59.13 1 1
+bitbucket.org/JerichoBaisa/bookings-go-v2/internal/forms/forms.go:62.38,63.40 1 1
+bitbucket.org/JerichoBaisa/bookings-go-v2/internal/forms/forms.go:63.40,65.3 1 1

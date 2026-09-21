@@ -1,0 +1,49 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="mt-4">Contact Page</h1>
+            {{$contact := index .Data "contact"}}
+            <form method="POST" class="needs-validation" novalidate>
+
+                <div class="form-group mt-5">
+                    <label for="first_name">First Name</label>
+                    <input type="text" name="first_name" id="first_name" class="form-control" placeholder=""
+                        aria-describedby="firstNameHelp" required autocomplete="off">
+                </div>
+
+                <div class="form-group mt-5">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" name="last_name" id="last_name" class="form-control" placeholder=""
+                        aria-describedby="lastNameHelp" required autocomplete="off">
+                </div>
+
+                <div class="form-group mt-5">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" class="form-control" placeholder=""
+                        aria-describedby="emailHelp" required autocomplete="off">
+                </div>
+
+                <div class="form-group mt-5 mb-5">
+                    <label for="phone_number">Phone Number</label>
+                    <input type="text" name="phone_number" id="phone_number" class="form-control" placeholder=""
+                        aria-describedby="phoneHelp" required autocomplete="off">
+                </div>
+
+                <div class="form-group mt-5 mb-5">
+                    <label for="message">Message</label>
+                    <textarea rows="5"  name="messager" id="message" class="form-control" placeholder=""
+                        aria-describedby="messageHelp" required autocomplete="off"></textarea>
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Submit">
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{{end}}

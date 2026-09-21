@@ -1,0 +1,117 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+{{$res := index .Data "reservation"}}
+    <div class="container">
+
+        <div class="row mt-3 ">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 m-auto">
+                <h1>Make Reservation</h1>
+
+                <p><strong>Reservation Details</strong></p>
+                <p>Room: {{$res.Room.RoomName}}</p>
+                <p>Arrival: {{index .StringMap "start_date"}}</p>
+                <p>Departure:  {{index .StringMap "end_date"}}</p>
+
+               
+                <form action="/make-reservation" method="post" class="needs-validation" novalidate>
+                  <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+                  <input type="hidden" name="start_date" value="{{index .StringMap "start_date"}}">
+                  <input type="hidden" name="end_date" value="{{index .StringMap "end_date"}}">
+                  <input type="hidden" name="room_id" value="{{$res.RoomID}}">
+
+                  <div class="form-group mt-3">
+                    <label for="first_name">First Name</label>
+                    {{with .Form.Errors.Get "first_name"}}
+                    <label class="text-danger">{{.}}</label>
+                    {{end}}
+                    <input type="text" name="first_name" id="first_name" class="form-control {{with .Form.Errors.Get "first_name"}} is-invalid {{end}}" placeholder=""
+                        aria-describedby="firstNameHelp" value="{{$res.FirstName}}" required autocomplete="off">
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="last_name">Last Name</label>
+                    {{with .Form.Errors.Get "last_name"}}
+                    <label class="text-danger">{{.}}</label>
+                    {{end}}
+                    <input type="text" name="last_name" id="last_name" class="form-control {{with .Form.Errors.Get "last_name"}} is-invalid {{end}}" placeholder=""
+                        aria-describedby="lastNameHelp" value="{{$res.LastName}}" required autocomplete="off">
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="email">Email</label>
+                    {{with .Form.Errors.Get "email"}}
+                    <label class="text-danger">{{.}}</label>
+                    {{end}}
+                    <input type="text" name="email" id="email" class="form-control {{with .Form.Errors.Get "email"}} is-invalid {{end}}" placeholder=""
+                        aria-describedby="emailHelp" value="{{$res.Email}}" required autocomplete="off">
+                </div>
+
+                <div class="form-group mt-3 mb-5">
+                    <label for="phone">Phone Number</label>
+                    {{with .Form.Errors.Get "phone"}}
+                    <label class="text-danger">{{.}}</label>
+                    {{end}}
+                    <input type="text" name="phone" id="phone" class="form-control {{with .Form.Errors.Get "phone"}} is-invalid {{end}}" placeholder=""
+                        aria-describedby="phoneHelp" value="{{$res.Phone}}" required autocomplete="off">
+                </div>
+
+                <!-- <div class="form-group mt-3 mb-5">
+                  <label for="start_date">Start Date</label>
+                  {{with .Form.Errors.Get "start_date"}}
+                  <label class="text-danger">{{.}}</label>
+                  {{end}}
+                  <input type="text" name="start_date" id="start" class="form-control {{with .Form.Errors.Get "start_date"}} is-invalid {{end}}" placeholder=""
+                      aria-describedby="start_date" value="{{$res.StartDate}}" required autocomplete="off">
+              </div> -->
+
+              <!-- <div class="form-group mt-3 mb-5">
+                <label for="end_date">End Date</label>
+                {{with .Form.Errors.Get "end_date"}}
+                <label class="text-danger">{{.}}</label>
+                {{end}}
+                <input type="text" name="end_date" id="end" class="form-control {{with .Form.Errors.Get "end_date"}} is-invalid {{end}}" placeholder=""
+                    aria-describedby="endDateHelp" value="{{$res.EndDate}}" required autocomplete="off">
+            </div> -->
+
+    
+   
+                    <div class="form-group row">
+                      <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Make Reservation</button>
+                      </div>
+                    </div>
+                  </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+
+        (function() {
+          'use strict';
+          window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+              form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+              }, false);
+            });
+          }, false);
+        })();
+      
+    </script>
+
+{{end}}
+
+
+ 

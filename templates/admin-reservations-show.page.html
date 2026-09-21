@@ -1,0 +1,125 @@
+{{template "admin" .}}
+
+{{define "page-title"}}
+    Show Reservation
+{{end}}
+
+{{define "content"}}
+
+{{$res := index .Data "reservation"}}
+{{$src := index .StringMap "src"}}
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+                <p>
+                    <strong>Arrival:</strong> {{humanDate $res.StartDate}} <br>
+                    <strong>Departure:</strong> {{humanDate $res.EndDate}} <br>
+                    <strong>Room:</strong> {{$res.Room.RoomName}} <br>
+                </p>
+                <form action="/admin/reservations/{{$src}}/{{$res.ID}}" method="post" class="needs-validation-222" novalidate>
+                    <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+                    <input type="hidden" name="year" value="{{index .StringMap "year"}}">
+                    <input type="hidden" name="month" value="{{index .StringMap "month"}}">
+    
+                    <div class="form-group mt-3">
+                      <label for="first_name">First Name</label>
+                      {{with .Form.Errors.Get "first_name"}}
+                      <label class="text-danger">{{.}}</label>
+                      {{end}}
+                      <input type="text" name="first_name" id="first_name" class="form-control {{with .Form.Errors.Get "first_name"}} is-invalid {{end}}" placeholder=""
+                          aria-describedby="firstNameHelp" value="{{$res.FirstName}}" required autocomplete="off">
+                  </div>
+  
+                  <div class="form-group mt-3">
+                      <label for="last_name">Last Name</label>
+                      {{with .Form.Errors.Get "last_name"}}
+                      <label class="text-danger">{{.}}</label>
+                      {{end}}
+                      <input type="text" name="last_name" id="last_name" class="form-control {{with .Form.Errors.Get "last_name"}} is-invalid {{end}}" placeholder=""
+                          aria-describedby="lastNameHelp" value="{{$res.LastName}}" required autocomplete="off">
+                  </div>
+  
+                  <div class="form-group mt-3">
+                      <label for="email">Email</label>
+                      {{with .Form.Errors.Get "email"}}
+                      <label class="text-danger">{{.}}</label>
+                      {{end}}
+                      <input type="text" name="email" id="email" class="form-control {{with .Form.Errors.Get "email"}} is-invalid {{end}}" placeholder=""
+                          aria-describedby="emailHelp" value="{{$res.Email}}" required autocomplete="off">
+                  </div>
+  
+                  <div class="form-group mt-3 mb-5">
+                      <label for="phone">Phone Number</label>
+                      {{with .Form.Errors.Get "phone"}}
+                      <label class="text-danger">{{.}}</label>
+                      {{end}}
+                      <input type="text" name="phone" id="phone" class="form-control {{with .Form.Errors.Get "phone"}} is-invalid {{end}}" placeholder=""
+                          aria-describedby="phoneHelp" value="{{$res.Phone}}" required autocomplete="off">
+                  </div>
+  
+                      <hr>
+                      <div class="row">
+                        <div class="col-md-6 col-sm-6  float-left">
+                            <input type="submit" class="btn btn-primary" value="Save">
+                            {{if eq $src "cal" }}
+                                <a href="#!" onclick="window.history.go(-1)" class="btn btn-warning">Cancel</a>
+                            {{else}}
+                                <a href="/admin/reservations-{{$src}}" class="btn btn-warning">Cancel</a>
+                            {{end}}
+                            {{if eq $res.Processed 0}}
+                                <a href="#!" class="btn btn-info" onclick="processReservation({{$res.ID}})">Mark as Processed</a>
+                            {{end}}
+                        </div>
+                        <div class="col-md-6 col-sm-6 float-right">
+                            <a href="#!" class="btn btn-danger" onclick="deleteReservation({{$res.ID}})">Delete</a>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+
+                    </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{{end}}
+
+{{define "js"}}
+{{$src := index .StringMap "src"}}
+<script>
+    function processReservation(id) {
+        attention.custom({
+            icon:'warning',
+            msg:'Are you sure?',
+            callback: function(result) {
+                if (result !== false) {
+                    window.location.href = "/admin/process-reservation/{{$src}}/" 
+                    + id 
+                    + "/do?y={{index .StringMap "year"}}&m={{index .StringMap "month"}}";
+                }
+            }
+        })
+    }
+
+    function deleteReservation(id)  {
+        attention.custom({
+            icon:'error',
+            msg:'Are you sure you want to delete?',
+            callback: function(result) {
+                if (result !== false) {
+                    window.location.href = "/admin/delete-reservation/{{$src}}/" + id + "/do?y={{index .StringMap "year"}}&m={{index .StringMap "month"}}";;
+                }
+            }
+        })
+    }
+</script>
+
+
+{{end}}

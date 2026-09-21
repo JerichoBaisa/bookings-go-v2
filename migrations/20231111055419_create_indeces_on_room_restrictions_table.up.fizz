@@ -1,0 +1,11 @@
+add_index("room_restrictions", ["start_date", "end_date"], {})
+add_index("room_restrictions", "room_id", {})
+add_index("room_restrictions", "reservation_id", {})
+
+add_index("reservations", "email", {})
+add_index("reservations", "last_name", {})
+
+add_foreign_key("room_restrictions", "reservation_id", {"reservations": ["id"]}, {
+    "on_delete": "cascade",
+    "on_update": "cascade",
+})
